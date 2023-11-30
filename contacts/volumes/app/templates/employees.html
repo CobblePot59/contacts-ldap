@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block headers %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/employee.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+{% include "navbar.html" %}
+{% include "modal/employee.html" %}
+
+<div class="container">
+  <div class="row row-title">
+    <div class="col-md-8">
+       <h1>{{title}}</h1>
+    </div>
+    <div class="col-md-4">
+       <div class="input-group search-input">
+          <input type="text" placeholder="Search employees..." id="search-input" class="form-control"/>
+          <div class="input-group-text"><i class="bi bi-search"></i></div>
+       </div>
+    </div>
+ </div>
+  <div class="row team-container">
+    {% for i in range(0,number) %}
+    <div class="team-member">
+      <a href="" data-bs-toggle="modal" data-bs-target="#upload-employee" data-id="{{ employee[i].id }}">
+        <img alt="image" class="img-fluid" src="{{ url_for('static', filename='img/contacts/' + employee[i].image) }}" name="{{ employee[i].name }}">
+      </a>
+      <div class="member-info">
+        <h5>
+          <span id="employee-name">{{ employee[i].name }} {{ employee[i].surname }}</span>
+          <a href="" data-bs-toggle="modal" data-bs-target="#edit-employee" data-id="{{ employee[i].id }}" data-name="{{ employee[i].name }}" data-surname="{{ employee[i].surname }}" data-email="{{ employee[i].email }}" data-phone="{{ employee[i].phone }}" data-mphone="{{ employee[i].mobile_phone }}" data-job="{{ employee[i].job }}" data-company-name="{{ employee[i].company_name }}">
+            <i class="bi bi-pencil-square" style="font-size: 0.8rem;"></i>
+          </a>
+          <a href="" data-bs-toggle="modal" data-bs-target="#remove-employee" data-id="{{ employee[i].id }}">
+            <i class="bi bi-trash3" style="color: red; font-size: 0.8rem;"></i>
+          </a>
+        </h5>
+        <p class="my-2"><small><a href="mailto:{{ employee[i].email }}">{{ employee[i].email }}</a></small></p>
+        <p class="my-2"><small><a href="tel:{{ employee[i].phone }}">{{ employee[i].phone }}</a></small></p>
+        <p class="my-2"><small><a href="tel:{{ employee[i].mobile_phone }}">{{ employee[i].mobile_phone }}</a></small></p>
+        <p class="my-2"><small>{{ employee[i].job }}, <span style="font-weight:bold;">{{ employee[i].company_name }}</span></small></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button type="button" class="float-button" data-bs-toggle="modal" data-bs-target="#add-employee"><i class="bi bi-plus-lg"></i></button>
+</div>
+{% endblock %}

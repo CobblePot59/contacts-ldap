@@ -1,0 +1,50 @@
+body {
+    color: #888;
+    overflow-y: auto;
+}
+
+a {
+    color: #03a1d1;
+    text-decoration: none!important;
+}
+
+.float-button{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 3 cards per row */
+    gap: 20px; /* Spacing between cards */
+    max-width: 1350px; /* Maximum width of the members' area */
+    margin: 0 auto; /* Center the area */
+    padding: 20px; /* Inner spacing */
+}
+
+.team-member {
+    display: flex;
+    padding: 15px;
+    flex-direction: row; /* Align image and text in a row */
+    align-items: center; /* Vertically center */
+    border: 1px solid #ccc; /* Border styling: 1px solid color #ccc */
+    border-radius: 10px; /* Add rounded corners */
+}
+
+.team-member img {
+    max-width: 100px; /* Maximum width of the image */
+    max-height: 100px; /* Maximum height of the image */
+    margin-right: 20px; /* Spacing between image and text */
+}
+
+.search-input {
+    margin-top: 10px;
+}

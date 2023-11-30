@@ -1,0 +1,133 @@
+<div id="add-company" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add company</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('add_company') }}" method="POST">
+                    <div class="form-group">
+                        <label>Name :</label>
+                        <input type="text" class="form-control" required="1" name="company-name">
+                    </div>
+                    <div class="form-group">
+                        <label>Address :</label>
+                        <input type="text" class="form-control" name="company-address">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone :</label>
+                        <input type="text" class="form-control" name="company-phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Website :</label>
+                        <input type="text" class="form-control" name="company-website">
+                    </div>
+                    <div class="form-group">
+                        <label>Tags :</label>
+                        <input type="text" class="form-control" name="company-tags" list="get-tag" multiple="multiple" placeholder="Enter your tags separated by commas">
+                        <datalist id="get-tag">
+                        {% for tag in tags %}
+                          <option>{{tag.name}}</option>
+                        {% endfor %}
+                        </datalist>
+                        <i style="color:grey;font-size: x-small;">* if the tag does not appear in the list, just add it</i>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="edit-company" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit company</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('edit_company') }}" method="POST">
+                    <input type="hidden" id="edit-company-id" name="edit-company-id">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" required="1" id="edit-company-name" name="edit-company-name">
+                    </div>
+                    <div class="form-group">
+                        <label>Address :</label>
+                        <input type="text" class="form-control" id="edit-company-address" name="edit-company-address">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone :</label>
+                        <input type="text" class="form-control"  id="edit-company-phone" name="edit-company-phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Website :</label>
+                        <input type="text" class="form-control" id="edit-company-website" name="edit-company-website">
+                    </div>
+                    <div class="form-group">
+                        <label>Tags :</label>
+                        <input type="text" class="form-control" id="edit-company-tags" name="edit-company-tags" list="get-tag" multiple="multiple" placeholder="Enter your tags separated by commas">
+                        <datalist id="get-tag">
+                        {% for tag in tags %}
+                          <option>{{tag.name}}</option>
+                        {% endfor %}
+                        </datalist>
+                        <i style="color:grey;font-size: x-small;">* if the tag does not appear in the list, just add it</i>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="remove-company" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Remove company</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('remove_company') }}" method="POST">
+                    <input type="hidden" id="rm-company-id" name="rm-company-id">
+                    <p style="color: grey;">Do you wan't remove company ?</p>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<div id="upload-company" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Image</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for('company_image') }}" method="POST" enctype="multipart/form-data" >
+                    <input type="hidden" id="upload-company-id" name="upload-company-id">
+                    <input class="form-control" type="file" name="image">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<div class="container">
+	   <a href="" class="navbar-brand text-white" style="pointer-events: none;">Contacts</a>
+	   <div id="navbarContent" class="collapse navbar-collapse">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item ">
+					<a href="{{ url_for('companies')}}" class="nav-link">Companies</a>
+				</li>
+				<li class="nav-item">
+					<a href="{{ url_for('employees')}}" class="nav-link">Employees</a>
+				</li>
+			</ul>
+	   </div>
+	   <a href="{{ url_for('logout')}}" class="nav-link">Logout</a>
+	</div>
+ </nav>

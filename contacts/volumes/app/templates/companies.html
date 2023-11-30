@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block headers %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/company.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+{% include "navbar.html" %}
+{% include "modal/company.html" %}
+
+<div class="container">
+    <div class="row row-title">
+      <div class="col-md-8">
+         <h1>Companies</h1>
+      </div>
+      <div class="col-md-4">
+         <div class="input-group search-input">
+            <input type="text" placeholder="Search companies..." id="search-input" class="form-control"/>
+            <div class="input-group-text"><i class="bi bi-search"></i></div>
+         </div>
+      </div>
+   </div>
+    <div class="row team-container">
+      {% for i in range(0,number) %}
+      <div class="team-member">
+        <a href="" data-bs-toggle="modal" data-bs-target="#upload-company" data-id="{{ companies[i].id }}">
+          <img alt="image" class="img-fluid" src="{{ url_for('static', filename='img/contacts/' + companies[i].image) }}" name="{{ companies[i].name }}">
+        </a>
+		    <div class="member-info">
+          <h5>
+            <a href="/company/{{ companies[i].name }} "><span id="company-name">{{ companies[i].name }}</span></a>
+            {% set tag_names = [] %}
+            {% for tag in companies[i].tags %}
+                {% set _ = tag_names.append(tag.name) %}
+            {% endfor %}
+            <a href="" data-bs-toggle="modal" data-bs-target="#edit-company" data-id="{{ companies[i].id }}" data-name="{{ companies[i].name }}" data-address="{{ companies[i].address }}" data-phone="{{ companies[i].phone }}" data-website="{{ companies[i].website }}"  data-tags="{{ tag_names | join(', ') }}">
+              <i class="bi bi-pencil-square" style="font-size: 0.8rem;"></i>
+            </a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#remove-company" data-id="{{ companies[i].id }}">
+              <i class="bi bi-trash3" style="color: red; font-size: 0.8rem;"></i>
+            </a>
+          </h5>
+          <p class="my-2"><small>{{ companies[i].address }}</small></p>
+          <p class="my-2"><small><a href="tel:{{ companies[i].phone }}">{{ companies[i].phone }}</a></small></p>
+          <p class="my-2"><small><a href="{{ companies[i].website }}">{{ companies[i].website }}</a></small></p>
+          {% set tag_names = [] %}
+          {% for tag in companies[i].tags %}
+            {% set _ = tag_names.append('#' + tag.name) %}
+          {% endfor %}
+          <p class="my-2"><small><a href="" id="tags-name">{{ tag_names | join(', ') }}</a></small></p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="button" class="float-button" data-bs-toggle="modal" data-bs-target="#add-company"><i class="bi bi-plus-lg"></i></button>
+  </div>
+{% endblock %}

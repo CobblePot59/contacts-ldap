@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr-FR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Contacts</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/bootstrap-icons.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/datatables/datatables.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/select2/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/toastr/toastr.min.css') }}">
+  {% block headers %}{% endblock %}
+
+  <script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/bootstrap/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/datatables/datatables.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/select2/select2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/toastr/toastr.min.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</head>
+
+<body>
+  {% block content %}{% endblock %}
+  {{ toastr.message() }}
+</body>
+
+</html>
